@@ -371,6 +371,13 @@
   cursor: pointer;
 }
 
+.pregstatus{
+  opacity:1;
+  padding-top:30px;
+  padding-bottom:20%;
+}
+
+
 input:checked+.rect {
   color: white;
   background-color: var(--gh-pink);
@@ -428,6 +435,12 @@ input:checked+.rect {
 
 .questionLabel {
   color:var(--gh-grey)
+}
+
+.genderselect {
+  color:var(--gh-grey);
+  width:100%;
+  margin-left:15px;
 }
 
 .greyed {

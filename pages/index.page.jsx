@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 const sendToAPI = async (formData, userData) => {
-  console.log(userData);
+
 
   const Model = {
     user_type:
@@ -18,7 +18,9 @@ const sendToAPI = async (formData, userData) => {
     occupation: formData.occupation,
     username: formData.username ? formData.username : "Unregistered",
     phone_number: formData.phone_number,
+
     gender: formData.gender,
+
     pregnant: formData.pregnant ? true : false,
     marital_status: formData.marital_status,
     pregnancy_week: formData.pregnancy_week,
@@ -152,7 +154,7 @@ const RenderQuestionPage_MultiSelect = ({
 
   // Handle submit
   const handleSubmit = () => {
-    console.log(selectedOptions);
+  
     onSubmit(selectedOptions);
   };
 
@@ -306,11 +308,11 @@ function App() {
   };
 
   const question2Options = {
-    Symptom1: "Symptom1 Issues",
-    Symptom2: "Symptom2 Issues",
-    Symptom3: "Symptom3 Issues",
-    Symptom4: "Symptom4 Issues",
-    Symptom5: "Symptom5 Issues",
+    "Missed period": "Missed period",
+    "Nausea and vomiting": "Nausea and vomiting",
+    "Breast changes": "Breast changes",
+    "Fatigue": "Fatigue",
+    "Frequent urination": "Frequent urination",
   };
 
   const question5Options = {
@@ -539,12 +541,23 @@ function App() {
 
   const [maritalStatus, setMaritalStatus] = useState("");
 
+  const [gender,setGender] = useState("undefined")
+
   const handleSelectChange = (event) => {
     setMaritalStatus(event.target.value);
 
     setForm({
       ...form,
       ["marital_status"]: event.target.value,
+    });
+  };
+
+  const handleSelectChangeGender = (event) => {
+    setGender(event.target.value);
+
+    setForm({
+      ...form,
+      ["gender"]: event.target.value,
     });
   };
 
@@ -673,7 +686,7 @@ function App() {
             <div className={styles.Start}>
               <ProgressBar progress={25} />
 
-              <h1>You might not be pregnant</h1>
+              <h1 className={styles.pregstatus}>You might not be pregnant</h1>
 
               <button
                 type="button"
@@ -696,7 +709,7 @@ function App() {
             <div className={styles.start}>
               <ProgressBar progress={25} />
 
-              <h1>You might be pregnant</h1>
+              <h1 className={styles.pregstatus}>You might be pregnant</h1>
 
               <div className={styles.buttonContainer}>
                 <button
@@ -1070,16 +1083,25 @@ function App() {
                           />
                           <br />
                         </div>
-                        <div>
-                          <input
-                            className={styles.submitBlank}
-                            type="text"
+                        <div className={styles.genderselect}>
+                          <label
+                            className={styles.questionLabel}
+                            htmlFor="gender"
+                            style={{ marginRight: "32px" }}
+                          >
+                            Gender:
+                          </label>
+                          <select
                             id="gender"
-                            name="gender"
-                            placeholder="Gender"
-                            onChange={handleChange}
-                          />
-                          <br />
+                            className={styles.submitBlank}
+                            value={gender}
+                            onChange={handleSelectChangeGender}
+                          >
+                            <option value="">Select...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </select>
                         </div>
                         <div>
                           <label

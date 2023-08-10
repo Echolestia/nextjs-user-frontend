@@ -48,7 +48,7 @@ const Signup = () => {
       };
 
       const chatRoomResponse = await axios.post("/api/chat_room", chatRoomData);
-      console.log("Chat room created: ", chatRoomResponse.data);
+
 
       toast({
         title: "Signup Successful",
