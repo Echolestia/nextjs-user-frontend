@@ -7,10 +7,7 @@ const sendToAPI = async (formData, userData) => {
 
 
   const Model = {
-    user_type:
-      !formData.username || !formData.password || !formData.email
-        ? "Anonymous"
-        : "Registered",
+    user_type:"client",
     profile: "string",
     first_name: formData.first_name,
     second_name: formData.second_name,
@@ -32,6 +29,8 @@ const sendToAPI = async (formData, userData) => {
     email: formData.email ? formData.email : "Unregistered",
     password: formData.password ? formData.password : "Unregistered",
   };
+
+  console.log(Model)
 
   try {
     const response = await axios.post("/api/users", Model, {
