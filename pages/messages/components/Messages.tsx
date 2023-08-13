@@ -87,6 +87,7 @@ const Messages: React.FC<MessagesProps> = ({
   opponentUser,
   isLoadingChatBotMessages,
 }) => {
+  // GET the user Metadata using Roger's custom hook
   const [user, isLoadingUser] = useUser();
   // State variable to keep track of whether the messages have loaded for the first time
   const [hasInitialLoad, setHasInitialLoad] = useState(false);
